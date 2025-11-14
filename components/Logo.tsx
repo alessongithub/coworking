@@ -2,9 +2,9 @@ export default function Logo() {
   return (
     <div className="flex items-center space-x-2">
       <svg
-        width="180"
+        width="220"
         height="45"
-        viewBox="0 0 180 45"
+        viewBox="0 0 220 45"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         className="h-10 w-auto"
@@ -32,17 +32,17 @@ export default function Logo() {
         />
         <circle cx="22" cy="22" r="6" fill="white" />
         
-        {/* Text */}
+        {/* Text completo usando tspan para melhor controle */}
         <text
           x="45"
           y="30"
-          fontSize="22"
+          fontSize="20"
           fontWeight="800"
-          fill="url(#logoGradient)"
           fontFamily="system-ui, -apple-system, sans-serif"
-          letterSpacing="1px"
+          letterSpacing="0.5px"
         >
-          Hub Co working
+          <tspan fill="url(#logoGradient)">Hub Co </tspan>
+          <tspan fill="#0369a1">working</tspan>
         </text>
       </svg>
     </div>
