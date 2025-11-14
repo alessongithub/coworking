@@ -141,10 +141,10 @@ export default function Gallery() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               draggable
-              onDragStart={(e) => handleDragStart(e as React.DragEvent, index)}
-              onDragOver={(e) => handleDragOver(e as React.DragEvent, index)}
+              onDragStart={(e) => handleDragStart(e as unknown as React.DragEvent, index)}
+              onDragOver={(e) => handleDragOver(e as unknown as React.DragEvent, index)}
               onDragLeave={handleDragLeave}
-              onDrop={(e) => handleDrop(e as React.DragEvent, index)}
+              onDrop={(e) => handleDrop(e as unknown as React.DragEvent, index)}
               onDragEnd={handleDragEnd}
               className={`relative group cursor-move overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 select-none ${
                 draggedIndex === index ? 'opacity-50 scale-95 z-50' : ''
