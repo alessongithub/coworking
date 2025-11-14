@@ -1,31 +1,31 @@
 # Script de Deploy para GitHub
-# Faz build, commit e push automático
+# Faz build, commit e push automatico
 
-Write-Host "🚀 Iniciando deploy..." -ForegroundColor Cyan
+Write-Host "Iniciando deploy..." -ForegroundColor Cyan
 
 # 1. Build do projeto
-Write-Host "📦 Fazendo build do projeto..." -ForegroundColor Yellow
+Write-Host "Fazendo build do projeto..." -ForegroundColor Yellow
 npm run build
 if ($LASTEXITCODE -ne 0) {
-    Write-Host "❌ Erro no build! Deploy cancelado." -ForegroundColor Red
+    Write-Host "Erro no build! Deploy cancelado." -ForegroundColor Red
     exit 1
 }
 
 # 2. Adicionar todos os arquivos
-Write-Host "➕ Adicionando arquivos ao Git..." -ForegroundColor Yellow
+Write-Host "Adicionando arquivos ao Git..." -ForegroundColor Yellow
 git add .
 
-# 3. Verificar se há mudanças
+# 3. Verificar se ha mudancas
 $status = git status --porcelain
 if ([string]::IsNullOrWhiteSpace($status)) {
-    Write-Host "ℹ️  Nenhuma mudança para commitar." -ForegroundColor Blue
+    Write-Host "Nenhuma mudanca para commitar." -ForegroundColor Blue
     exit 0
 }
 
 # 4. Commit
 $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
-Write-Host "💾 Fazendo commit..." -ForegroundColor Yellow
-git commit -m "Deploy automático - $timestamp"
+Write-Host "Fazendo commit..." -ForegroundColor Yellow
+git commit -m "Deploy automatico - $timestamp"
 
 # 5. Detectar branch atual
 $currentBranch = git branch --show-current
@@ -34,13 +34,12 @@ if ([string]::IsNullOrWhiteSpace($currentBranch)) {
 }
 
 # 6. Push para GitHub
-Write-Host "📤 Enviando para GitHub (branch: $currentBranch)..." -ForegroundColor Yellow
+Write-Host "Enviando para GitHub (branch: $currentBranch)..." -ForegroundColor Yellow
 git push origin $currentBranch
 if ($LASTEXITCODE -ne 0) {
-    Write-Host "❌ Erro ao fazer push. Verifique suas credenciais Git." -ForegroundColor Red
+    Write-Host "Erro ao fazer push. Verifique suas credenciais Git." -ForegroundColor Red
     exit 1
 }
 
-Write-Host "✅ Deploy concluído com sucesso!" -ForegroundColor Green
-Write-Host "🌐 O Netlify fará o deploy automaticamente após o push." -ForegroundColor Cyan
-
+Write-Host "Deploy concluido com sucesso!" -ForegroundColor Green
+Write-Host "O Netlify fara o deploy automaticamente apos o push." -ForegroundColor Cyan
